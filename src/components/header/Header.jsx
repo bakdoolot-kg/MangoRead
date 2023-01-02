@@ -1,25 +1,54 @@
 import "./header.css";
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Box, Typography } from "@mui/material";
+import { Link, NavLink } from "react-router-dom";
+import { Box, Button, Toolbar, Typography } from "@mui/material";
 import SearchBar from "../searchbar/SearchBar";
 import logo from "../../assets/Logo.svg";
+import RegisterDialog from "../registerDialog/RegisterDialog";
+import { useSelector } from "react-redux";
+import {
+  selectCurrentAccess,
+  selectCurrentUser,
+} from "../../redux/features/authSlice";
 
 const Header = () => {
   const [toggle, showMenu] = useState(false);
+  const [signModal, showSignModal] = useState(false);
+  const [typeSign, setTypeSign] = useState("");
+  const user = useSelector(selectCurrentUser);
+  const access = useSelector(selectCurrentAccess);
+
+  const handleOpenModal = (type) => {
+    if (type === "register") {
+      setTypeSign("register");
+    } else {
+      setTypeSign("login");
+    }
+    showSignModal(true);
+  };
+
+  const handleCloseModal = () => {
+    showSignModal(false);
+  };
 
   return (
     <header className="header">
       <nav className="nav container">
         <Box
-          sx={{ display: "flex", alignItems: "center", mt: 1, pr: 1 }}
+          sx={{
+            width: "24%",
+            display: "flex",
+            alignItems: "center",
+            mt: 1,
+            pr: 1,
+          }}
           className="nav__logo-container"
         >
           <NavLink to="/" className="nav__logo">
             <img src={logo} alt="logo" width="83px" />
           </NavLink>
 
-          <Box sx={{ mt: 1, mr: 1, pl: 1 }}>
+          <Box>
             <Typography variant="h6" sx={{ fontSize: "1rem", fontWeight: 500 }}>
               MangoRead
             </Typography>
@@ -29,12 +58,37 @@ const Header = () => {
           </Box>
         </Box>
 
-        <Box>
+        <Box sx={{ width: "30%" }}>
           <SearchBar />
         </Box>
 
-        <div className={toggle ? "nav__menu show-menu" : "nav__menu"}></div>
+        <Box sx={{ flexGrow: 0, width: "30%" }}>
+          <Button
+            onClick={() => handleOpenModal("login")}
+            variant="outlined"
+            sx={{ mr: 1.5, px: 4, py: 0.7 }}
+          >
+            Войти
+          </Button>
+          <Button
+            onClick={() => handleOpenModal("register")}
+            variant="contained"
+            sx={{ px: 3 }}
+          >
+            Регистрация
+          </Button>
+        </Box>
       </nav>
+
+      {
+        <Box sx={{ maxWidth: "400px" }}>
+          <RegisterDialog
+            open={signModal}
+            handleClose={handleCloseModal}
+            type={typeSign}
+          />
+        </Box>
+      }
     </header>
   );
 };

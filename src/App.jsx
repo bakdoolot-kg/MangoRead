@@ -11,7 +11,7 @@ const App = () => {
     <Box>
       <Header/>
 
-      <Container maxWidth="968" sx={{ maxWidth: "968px" }} disableGutters={true}>
+      <Container maxWidth="990" sx={{ maxWidth: "990px" }} disableGutters={true}>
         <Routes>
           <Route path="/" element={<MainPage />}/>
           <Route path="/manga/:id" element={<InfoPage />}/>
