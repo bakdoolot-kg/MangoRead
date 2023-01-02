@@ -87,7 +87,7 @@ const RegisterDialog = ({ open, handleClickOpen, handleClose, type }) => {
         )} */}
         {/* ==== ЛОГИН ==== */}
         <TabPanel value={value} index={0}>
-          <LoginForm value={value}/>
+          <LoginForm value={value} onClose={handleClose}/>
         </TabPanel>
         {/* ==== РЕГИСТРАЦИЯ ==== */}
         <TabPanel value={value} index={1}>

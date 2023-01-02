@@ -4,7 +4,6 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/authSlice";
 import { useLoginMutation } from "../../redux/features/authApiSlice";
-import { signInUser } from "../../redux/features/userSlice";
 
 import {
   FormGroup,
@@ -14,7 +13,7 @@ import {
   TextField,
 } from "@mui/material";
 
-const LoginForm = ({ value }) => {
+const LoginForm = ({ value, onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [remembered, setRemembered] = useState(false);
@@ -31,10 +30,13 @@ const LoginForm = ({ value }) => {
       const {username, password } = data
       const userData = await login({ username, password }).unwrap()
       dispatch(setCredentials({ ...userData, username }))
-      reset({ ...data })
+      onClose()
+      reset({})
       navigate('/')
     } catch (error) {
       console.log(error);
+    } finally {
+      
     }
     // dispatch(signInUser(data));
   };

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { setCredentials } from "../../redux/features/authSlice";
+import { useRegisterMutation } from "../../redux/features/authApiSlice";
 import { signUpUser } from "../../redux/features/userSlice";
 import { Box, Avatar, Button, TextField } from "@mui/material"
 
@@ -9,12 +11,20 @@ const RegisterForm = ({ value }) => {
   const { control, handleSubmit } = useForm();
   const [image, setImage] = useState("");
 
-  const submit = (data) => {
-    let formData = new FormData();
-    for (const key in data) {
-      formData.set(key, data[key]);
+  const [register, {isLoading}] = useRegisterMutation()
+
+  const submit = async (data) => {
+    try {
+      let formData = new FormData();
+      for (const key in data) {
+        formData.set(key, data[key]);
+      }
+      const userData = await register(formData).unwrap()
+      dispatch(setCredentials(...userData, data.username))
+    } catch (e) {
+      console.log(e);
     }
-    dispatch(signUpUser(formData));
+    
   };
 
   return (
@@ -49,7 +59,6 @@ const RegisterForm = ({ value }) => {
                 accept="image/*"
               />
             )}
-            rules={{ required: "Image required" }}
           />
         </Button>
       </Box>

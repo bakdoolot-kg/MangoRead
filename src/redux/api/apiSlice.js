@@ -3,11 +3,10 @@ import { setCredentials, logOut } from "../features/authSlice"
 
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://134.122.75.14:8666/api",
-  credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const access = getState().auth.accessToken
     if (access) {
-      headers.set("X-CSRFToken", access)
+      headers.set("authorization", `Basic ${access}`)
     }
     return headers
   }

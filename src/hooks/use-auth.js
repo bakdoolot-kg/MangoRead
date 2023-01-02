@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
-import { selectCurrentAccess } from "../redux/features/authSlice";
+import { selectCurrentAccess, selectCurrentUser } from "../redux/features/authSlice";
 
 export function useAuth() {
-  const { user, access } = useSelector(state => state.auth);
+  const user = useSelector(selectCurrentUser);
+  const access = useSelector(selectCurrentAccess)
 
   return {
     isAuth: !!user,

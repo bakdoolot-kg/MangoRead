@@ -14,9 +14,10 @@ const theme = createTheme({
       dark: "#e0a419",
     },
     secondary: {
-      main: "#AD02E0",
+      main: "#2FE09B",
       dark: "#740994",
     },
+
   },
   typography: {
     fontFamily: ["Montserrat", "sans-serif"].join(","),
