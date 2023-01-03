@@ -13,6 +13,12 @@ export const mangaApiSlice = apiSlice.injectEndpoints({
     }),
     getMangaComments: builder.query({
       query: (id) => `/v1/manga/${id}/comments/`
+    }),
+    getMangaBySearch: builder.query({
+      query: (params) => `/v1/manga/?page=${params.page}&search=${params.searchTerm}`
+    }),
+    getSortManga: builder.query({
+      query: (params) => `/v1/manga/?type=${params.type}${params.genre__title && `&genre__title=${params.genre__title}`}`
     })
   })
 })
@@ -22,5 +28,7 @@ export const {
   useGetMangaQuery,
   useGetMangaDetailsQuery,
   useGetMangaGenreQuery,
-  useGetMangaCommentsQuery
+  useGetMangaCommentsQuery,
+  useGetMangaBySearchQuery,
+  useGetSortMangaQuery
 } = mangaApiSlice

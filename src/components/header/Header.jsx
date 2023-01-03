@@ -53,6 +53,7 @@ const Header = () => {
 
   const handleLogOut = () => {
     showSignModal(false)
+    setAnchorElUser(false)
     dispatch(logOut())
   }
 

@@ -68,7 +68,7 @@ const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} autoComplete="off">
       <StyleSearch>
         <StyleIconWrapper sx={{ display: stateInput ? "none" : "flex" }}>
           <Search />

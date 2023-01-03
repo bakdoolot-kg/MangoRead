@@ -56,13 +56,13 @@ const InfoPage = () => {
 
           <Box sx={{mb: 2, display: "flex"}}>
             <Avatar src={data.image} variant="rounded" sx={{width: 300, height: 300}}/>
-            <Box sx={{ml: 3}}>
-              <Typography variant="h3" sx={{fontWeight: 500}}>{data.ru_name}</Typography>
+            <Box sx={{ml: 3, whiteSpace: "pre-line", maxWidth: 600,}}>
+              <Typography variant="h3" sx={{ fontWeight: 500}}>{data.ru_name}</Typography>
               <Typography sx={{mt: 4}} variant="body1">Информация:</Typography>
               <Typography sx={{mt: 2}}><b>Тип:</b> {data.type}</Typography>
               <Typography sx={{mt: 2}}><b>Год:</b> {data.issue_year}</Typography>
               <Typography
-                sx={{mt: 2}}><b>Жанр:</b> {genres?.map((item) => data.genre.includes(item.id) && item.title + ",")}
+                sx={{mt: 2, overflowWrap: "break-word"}}><b>Жанр:</b> {genres?.map((item) => data.genre.includes(item.id) && item.title + ",")}
               </Typography>
             </Box>
           </Box>

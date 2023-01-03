@@ -1,4 +1,4 @@
-import {Box, Container, Grid, Typography} from "@mui/material";
+import {Box, Container, Divider, Grid, Typography} from "@mui/material";
 
 const Footer = () => {
   return (
@@ -12,19 +12,30 @@ const Footer = () => {
               mt: 3
           }}
       >
-        <Container maxWidth="lg">
-          <Grid container direction="column" alignItems="center">
-            <Grid item xs={12}>
+        <Container
+          className="container"
+        >
+          <Grid container direction="row" sx={{ mt: 3 }}>
+            <Grid item xs={4}>
               <Typography color="black" variant="h5">
                 React Starter App
               </Typography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={4}>
+              <Typography color="textSecondary" variant="subtitle1">
+                {`${new Date().getFullYear()} | React | Material UI | React Router`}
+              </Typography>
+            </Grid>
+            <Grid item xs={4}>
               <Typography color="textSecondary" variant="subtitle1">
                 {`${new Date().getFullYear()} | React | Material UI | React Router`}
               </Typography>
             </Grid>
           </Grid>
+          <Divider sx={{ mt: 5 }}/>
+        <Box>
+          <Typography>©{new Date().getFullYear()}, All right reserved.</Typography>
+        </Box>
         </Container>
       </Box>
   )

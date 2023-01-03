@@ -28,15 +28,16 @@ const LoginForm = ({ value, onClose }) => {
   const submit = async (data) => {
     try {
       const {username, password } = data
+      console.log(data)
       const userData = await login({ username, password }).unwrap()
-      dispatch(setCredentials({ ...userData, username }))
+      dispatch(setCredentials({ ...userData, username, remembered }))
       onClose()
       reset({})
       navigate('/')
     } catch (error) {
       console.log(error);
     } finally {
-      
+
     }
     // dispatch(signInUser(data));
   };
@@ -63,6 +64,7 @@ const LoginForm = ({ value, onClose }) => {
         <FormControlLabel
           control={
             <Checkbox
+              {...register("remembered")}
               defaultChecked
               checked={remembered}
               onChange={handleRemember}

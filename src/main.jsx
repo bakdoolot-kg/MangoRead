@@ -31,6 +31,9 @@ const theme = createTheme({
     body1: {
       fontSize: 24,
     },
+    body2: {
+      fontSize: 16
+    }
   },
   shape: {
     borderRadius: 8,
