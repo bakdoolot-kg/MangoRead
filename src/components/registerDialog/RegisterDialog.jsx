@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import { signUpUser } from "../../redux/features/userSlice";
 import {
   Button,
   Dialog,

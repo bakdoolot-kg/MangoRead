@@ -24,7 +24,7 @@ const SearchPage = () => {
     return (
       <Box sx={{height: "85vh", display: "flex", flexDirection: "column"}}>
         <div>
-          <Typography sx={{mt: 2}}>{ data?.results.length > 0 ? `Результаты поиска ${searchTerm}` : `Ничего не найдено по запросу "${searchTerm}"`}</Typography>
+          <Typography sx={{mt: 2}}>{ data?.results.length > 0 ? `Результаты поиска "${searchTerm}"` : `Ничего не найдено по запросу "${searchTerm}"`}</Typography>
           <Grid container rowSpacing={2} columnSpacing={{xs: 1, sm: 2, md: 2}} sx={{mt: 2, mb: 4}}>
             {data?.results.map((item) => {
               return (

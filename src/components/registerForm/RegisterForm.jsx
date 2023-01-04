@@ -3,7 +3,6 @@ import { Controller, useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/authSlice";
 import { useRegisterMutation } from "../../redux/features/authApiSlice";
-import { signUpUser } from "../../redux/features/userSlice";
 import { Box, Avatar, Button, TextField } from "@mui/material"
 
 const RegisterForm = ({ value }) => {
@@ -24,7 +23,7 @@ const RegisterForm = ({ value }) => {
     } catch (e) {
       console.log(e);
     }
-    
+
   };
 
   return (

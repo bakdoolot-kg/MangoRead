@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../redux/features/authSlice";
 import { useLoginMutation } from "../../redux/features/authApiSlice";
@@ -17,7 +17,7 @@ const LoginForm = ({ value, onClose }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
   const [remembered, setRemembered] = useState(false);
-  const { register, control, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   const [login, { isLoading }] = useLoginMutation();
 
@@ -28,7 +28,6 @@ const LoginForm = ({ value, onClose }) => {
   const submit = async (data) => {
     try {
       const {username, password } = data
-      console.log(data)
       const userData = await login({ username, password }).unwrap()
       dispatch(setCredentials({ ...userData, username, remembered }))
       onClose()

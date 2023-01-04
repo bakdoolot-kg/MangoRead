@@ -3,7 +3,7 @@ import {apiSlice} from "../api/apiSlice";
 export const mangaApiSlice = apiSlice.injectEndpoints({
   endpoints: builder => ({
     getManga: builder.query({
-      query: ({page, type}) => `/v1/manga/?${type ? "type=" + type + "&" : ""}${page ? "page=" + page : ""}`,
+      query: (params) => `/v1/manga/?${params.genre ? "genre__title=" + params.genre+"&" : ""}${params.page ? "page=" + params.page : ""}`,
     }),
     getMangaDetails: builder.query({
       query: (id) => `/v1/manga/${id}/`
